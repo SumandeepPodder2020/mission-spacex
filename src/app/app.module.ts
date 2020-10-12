@@ -3,12 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SpacexMissionsComponent } from './spacex-missions/spacex-missions.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MissionDetailComponent } from './mission-detail/mission-detail.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SpacexMissionsComponent,
+    MissionDetailComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule
   ],
