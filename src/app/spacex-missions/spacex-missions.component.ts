@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { SpacexMissionService } from '../spacex-mission/spacex-mission.service';
 import { Location } from '@angular/common'
-import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class SpacexMissionsComponent implements OnInit {
     private missionService: SpacexMissionService,
     private changeDetectorRef: ChangeDetectorRef,
     private location: Location,
-    private router: Router
+    private spinnerService: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -44,6 +44,7 @@ export class SpacexMissionsComponent implements OnInit {
 
   getValues(launch,land,year) {  
     this.missionDetails = [];  
+    this.spinnerService.show();
     this.missionService.getMissionsOnLoad(launch,land,year).subscribe(response => {
       if(response && response.length > 0) {
         this.missionDetails = response;
@@ -52,7 +53,8 @@ export class SpacexMissionsComponent implements OnInit {
           this.launchYearArr = tmpArray.filter((eachYear,index,array) => {
             return array.indexOf(eachYear)=== index;
           });
-        }        
+        }   
+        this.spinnerService.hide();     
         this.changeDetectorRef.detectChanges();
       }
     });
