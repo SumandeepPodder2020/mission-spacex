@@ -17,7 +17,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
   ],
   imports: [
     HttpClientModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     NgxSpinnerModule
   ],
