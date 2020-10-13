@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SpacexMissionService {
-  baseUrl = 'https://api.spaceXdata.com/v3/launches?limit=100';
+  baseUrl = 'https://api.spaceXdata.com/v3/launches?';
   constructor(private http: HttpClient) { }
 
-  getMissionsOnLoad(launch, land, year): Observable<any> {
-    let apiUrl = this.baseUrl
+  getMissionsOnLoad(launch, land, year,limit=1): Observable<any> {
+    let apiUrl = this.baseUrl+'limit='+limit;
     if(launch) {
       apiUrl = apiUrl+'&launch_success='+launch;
     }
